@@ -3,8 +3,8 @@ const fileUpload = require("express-fileupload");
 const app = express();
 
 const PORT = 8000;
-app.use("/form", express.static(__dirname + "/frontend/index.html"));
-app.use("/pub", express.static(__dirname + "/frontend/public"));
+app.use("/form", express.static(__dirname + "../../frontend/index.html"));
+app.use("/pub", express.static(__dirname + "../../frontend/public"));
 
 // default options
 app.use(fileUpload());
@@ -26,7 +26,7 @@ app.post("/upload", function (req, res) {
 
   sampleFile = req.files.sampleFile;
 
-  uploadPath = __dirname + "/uploads/" + sampleFile.name;
+  uploadPath = __dirname + "/backend/uploads/" + sampleFile.name;
 
   sampleFile.mv(uploadPath, function (err) {
     if (err) {
@@ -36,6 +36,7 @@ app.post("/upload", function (req, res) {
     res.send("File uploaded to " + uploadPath);
   });
 });
+//--------------------------------------------------------------------
 
 app.listen(PORT, function () {
   console.log("Express server listening on port ", "http://localhost:" + PORT); // eslint-disable-line
