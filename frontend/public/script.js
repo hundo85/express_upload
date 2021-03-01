@@ -2,20 +2,25 @@ function pageLoad() {
   console.log("Client is running!");
   const form = document.getElementById("uploadForm");
 
-  function blockSubmit(event) {
+  async function upload(event) {
     event.preventDefault();
     console.log("Upload is blocked!");
 
     let formData = new FormData();
-    formData.append("name", event.target[0].value);
-    formData.append("file", event.target[1].value);
+    formData.append("name", document.getElementById("username").values);
+    formData.append("file", document.getElementById("userfile").files[0]);
 
-    for (var value of formData.values()) {
+    /*     for (var value of formData.values()) {
       console.log(value);
-    }
+    } */
+
+    await fetch("/upload", {
+      method: "POST",
+      body: formData,
+    });
   }
 
-  form.addEventListener("submit", blockSubmit);
+  form.addEventListener("submit", upload);
 }
 
 window.addEventListener("load", pageLoad);

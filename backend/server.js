@@ -14,7 +14,7 @@ app.get("/ping", function (req, res) {
 });
 
 app.post("/upload", function (req, res) {
-  let sampleFile;
+  let incomeFile;
   let uploadPath;
 
   if (!req.files || Object.keys(req.files).length === 0) {
@@ -24,11 +24,11 @@ app.post("/upload", function (req, res) {
 
   console.log("req.files >>>", req.files); // eslint-disable-line
 
-  sampleFile = req.files.sampleFile;
+  incomeFile = req.files.file; //named file in html
 
-  uploadPath = __dirname + "/uploads/" + sampleFile.name;
+  uploadPath = __dirname + "/uploads/" + incomeFile.name;
 
-  sampleFile.mv(uploadPath, function (err) {
+  incomeFile.mv(uploadPath, function (err) {
     if (err) {
       return res.status(500).send(err);
     }

@@ -8,16 +8,21 @@
   <title>Document</title>
 </head>
   <body>
-    <form ref='uploadForm' 
-      id='uploadForm' 
-      action='http://localhost:8000/upload' 
-      method='post' 
-      encType="multipart/form-data">
-      
-        <label for="username">Enter name:</label>
-        <input type="text" id="username" name="username">
-        <input type="file" name="sampleFile" />
-        <input type='submit' value='Upload!' />
-    </form>     
+    <form id='uploadForm'>
+        <input type="file" id="userfile" />
+        <input type="text" id="username" />
+        <button type="submit">Submit</button>
+    </form> 
+<!--     <form ref='uploadForm' 
+    id='uploadForm' 
+    action='http://localhost:8000/upload' 
+    method='post' 
+    encType="multipart/form-data">
+    
+      <label for="username">Enter name:</label>
+      <input type="text" id="username" name="username">
+      <input type="file" name="sampleFile" />
+      <input type='submit' value='Upload!' />
+  </form>   -->   
   </body>
 </html>
