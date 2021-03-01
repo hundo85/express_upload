@@ -22,10 +22,10 @@ app.post("/upload", function (req, res) {
     return;
   }
 
-  console.log("req.files >>>", req.files); // eslint-disable-line
+  console.log("req.files >>>", req); // eslint-disable-line
 
   incomeFile = req.files.file; //named file in html
-
+  incomeFile.name = "uploaded.jpg";
   uploadPath = __dirname + "/uploads/" + incomeFile.name;
 
   incomeFile.mv(uploadPath, function (err) {
