@@ -21,6 +21,7 @@ async function uploadFile(event) {
     body: formData,
     mode: "no-cors",
   });
+  console.log("Upload success!");
 }
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
       </button>
     </div>
   );
+  //onClick={()=>{setUpload(!upload ? true : false)}}
 }
 
 export default App;
