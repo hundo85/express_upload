@@ -2,9 +2,41 @@ const express = require("express");
 const fileUpload = require("express-fileupload");
 const app = express();
 
+app.use(function (req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/");
+
+  // Request methods you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+
+  // Request headers you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader("Access-Control-Allow-Credentials", true);
+
+  // Pass to next layer of middleware
+  next();
+});
+
+const cors = require("cors");
+const corsOptions = {
+  origin: "http://localhost:3000/",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
 const PORT = 8000;
-app.use("/form", express.static(__dirname + "../../frontend/index.html"));
-app.use("/pub", express.static(__dirname + "../../frontend/public"));
+/* app.use("/form", express.static(__dirname + "../../frontend/index.html"));
+app.use("/pub", express.static(__dirname + "../../frontend/public")); */
 
 // default options
 app.use(fileUpload());
@@ -22,7 +54,7 @@ app.post("/upload", function (req, res) {
     return;
   }
 
-  console.log("req.files >>>", req); // eslint-disable-line
+  console.log("req.files >>>", req.files); // eslint-disable-line
 
   incomeFile = req.files.file; //named file in html
   incomeFile.name = "uploaded.jpg";
