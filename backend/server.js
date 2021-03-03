@@ -55,9 +55,9 @@ app.post("/upload", function (req, res) {
   }
 
   console.log("req.files >>>", req.files); // eslint-disable-line
-
+  console.log("req.body >>>", req.body);
   incomeFile = req.files.file; //named file in html
-  incomeFile.name = "uploaded.jpg";
+  incomeFile.name = req.body.name + ".jpg";
   uploadPath = __dirname + "/uploads/" + incomeFile.name;
 
   incomeFile.mv(uploadPath, function (err) {
