@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Contact Us</h1>
+      <h1>Personal Data</h1>
       <div className="info">
         <input
           className="inputText"

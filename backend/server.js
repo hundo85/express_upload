@@ -1,6 +1,7 @@
 const express = require("express");
 const fileUpload = require("express-fileupload");
 const app = express();
+const fs = require("fs");
 
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
@@ -66,6 +67,20 @@ app.post("/upload", function (req, res) {
     }
 
     res.send("File uploaded to " + uploadPath);
+
+    incomeText = req.body.userdata;
+    const jsonContent = JSON.parse(incomeText);
+    const json = JSON.stringify(jsonContent);
+
+    fs.writeFile(
+      __dirname +
+        "/uploads/" +
+        `${jsonContent.email.replace(/[^a-zA-Z0-9]/g, "")}` +
+        ".json",
+      json,
+      "utf8",
+      function () {}
+    );
   });
 });
 //--------------------------------------------------------------------
